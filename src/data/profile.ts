@@ -1,16 +1,16 @@
 import type { ProfileData } from "@/types";
 
 export const profile: ProfileData = {
-  name: "Your Name",
+  name: "Juan Pablo Bovio Vallejo",
   title: "Software & AI Engineer",
   positioning:
     "Building intelligent systems and production-grade software at the intersection of engineering and artificial intelligence.",
   currentFocus: "Computer Science · Software Engineering · AI Systems",
-  email: "hello@youremail.com",
-  linkedin: "https://linkedin.com/in/yourprofile",
-  github: "https://github.com/yourusername",
-  resumeUrl: "/resume.pdf",
-  location: "Global · Remote Ready",
+  email: "jboviovallejo@gmail.com",
+  linkedin: "https://www.linkedin.com/in/juanbovio/",
+  github: "https://github.com/lilbovio",
+  resumeUrl: "/Juan_Bovio_Resume.pdf",
+  location: "Global · Remote Ready · Based in Guadalajara, Mexico",
   systemId: "NEURAL-OS v2.4.1",
   bio: {
     headline: "System Intelligence Report — Operator Profile",
