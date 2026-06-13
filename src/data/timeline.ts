@@ -57,7 +57,7 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "career-1",
-    date: "2025-09",
+    date: "2026-09",
     type: "career",
     title: "Software Engineering Internship",
     description:
