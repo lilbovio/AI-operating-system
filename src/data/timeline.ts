@@ -3,7 +3,7 @@ import type { MissionEntry } from "@/types";
 export const missionLog: MissionEntry[] = [
   {
     id: "edu-1",
-    date: "2022-09",
+    date: "2024-02",
     type: "education",
     title: "Computer Science — University Enrollment",
     description:
@@ -12,7 +12,7 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "proj-1",
-    date: "2023-06",
+    date: "2024-03",
     type: "project",
     title: "First Full-Stack Application",
     description:
@@ -20,48 +20,39 @@ export const missionLog: MissionEntry[] = [
     status: "completed",
   },
   {
-    id: "cert-1",
-    date: "2023-12",
-    type: "certification",
-    title: "Cloud Practitioner Certification",
-    description:
-      "Earned cloud fundamentals certification — AWS services, architecture patterns, and deployment strategies.",
-    status: "completed",
-  },
-  {
     id: "hack-1",
-    date: "2024-03",
+    date: "2024-12",
     type: "hackathon",
-    title: "University Hackathon — Top 3",
+    title: "University Hackathon — Top 2",
     description:
-      "Built real-time collaborative tool in 24 hours. Learned rapid prototyping and team coordination under pressure.",
+      "Solved 10 algorithmic challenges in 24 hours.",
     status: "completed",
   },
   {
     id: "proj-2",
-    date: "2024-08",
+    date: "2025-07",
     type: "project",
-    title: "OnboardIQ — SaaS Launch",
+    title: "MyChangarro",
     description:
-      "Designed and deployed intelligent onboarding platform serving HR teams with automated workflows and analytics.",
+      "Designed and deployed system to connect buyers and sellers in the local market.",
     status: "completed",
   },
   {
     id: "proj-3",
-    date: "2025-01",
+    date: "2025-10",
     type: "project",
-    title: "POS System — Production Deploy",
+    title: "MyChangarro v2.0",
     description:
-      "Built and deployed real-time point-of-sale system with offline-first architecture and multi-terminal sync.",
+      "Built and deployed real-time connection platform for local commerce with AI-powered recommendations and chat support.",
     status: "completed",
   },
   {
     id: "hack-2",
-    date: "2025-04",
+    date: "2026-03",
     type: "hackathon",
-    title: "AI Hackathon — 1st Place (NeuralBridge)",
+    title: "University Hackathon — 2nd Place",
     description:
-      "Won university AI hackathon with accessibility assistant powered by computer vision and NLP.",
+      "Won university hackathon by solving 2 real-world problems with software solutions.",
     status: "completed",
   },
   {
@@ -71,7 +62,7 @@ export const missionLog: MissionEntry[] = [
     title: "Software Engineering Internship",
     description:
       "Contributing to production systems at a technology company — full-stack development and code review.",
-    status: "in-progress",
+    status: "upcoming",
   },
   {
     id: "proj-4",
@@ -84,7 +75,7 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "edu-2",
-    date: "2026-06",
+    date: "2027-01",
     type: "education",
     title: "CS Degree — Expected Graduation",
     description:

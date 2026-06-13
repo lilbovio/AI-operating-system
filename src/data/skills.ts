@@ -15,7 +15,7 @@ export const skillEvidence: SkillEvidence[] = [
     id: "ai-systems",
     domain: "AI & Machine Learning",
     evidence: [
-      "NeuralBridge — 1st place hackathon AI accessibility assistant",
+      "Designed and implemented AI features in multiple projects, including LLM-powered recommendations, computer vision pipelines, and NLP processing",
       "LLM integration, computer vision pipelines, and NLP processing",
       "CortexOS research — multi-agent orchestration architecture",
     ],

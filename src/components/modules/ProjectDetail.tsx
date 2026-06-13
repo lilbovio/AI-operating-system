@@ -83,28 +83,12 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
               <p className="text-white/50">{project.tagline}</p>
             </div>
 
-            {/* Preview placeholder */}
-            <div
-              className="relative h-48 md:h-56 rounded-xl overflow-hidden border border-white/[0.06]"
-              style={{
-                background: `linear-gradient(135deg, ${project.accent}15, transparent 60%)`,
-              }}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <Layers
-                    size={32}
-                    className="mx-auto mb-2 text-white/20"
-                    style={{ color: project.accent }}
-                  />
-                  <p className="font-mono text-xs text-white/30">
-                    Application Preview — Add screenshots here
-                  </p>
-                </div>
-              </div>
-              <div
-                className="absolute bottom-0 left-0 right-0 h-px"
-                style={{ background: `linear-gradient(90deg, transparent, ${project.accent}40, transparent)` }}
+            {/* Image placeholder */}
+            <div className="w-full h-48 md:h-64 rounded-lg overflow-hidden border border-white/[0.06]">
+              <img
+                src={project.image}
+                alt={`${project.name} screenshot`}
+                className="w-full h-full object-cover"
               />
             </div>
 

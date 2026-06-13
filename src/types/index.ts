@@ -18,6 +18,7 @@ export interface OSModule {
 export interface Project {
   id: string;
   name: string;
+  image: string;
   tagline: string;
   status: "deployed" | "development" | "concept";
   category: string;
