@@ -1,10 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ModuleId } from "@/types";
 
-export function useActiveSection(sectionIds: ModuleId[]) {
+export function useActiveSection(
+  sectionIds: ModuleId[],
+  overrideSection?: ModuleId | null,
+  onScrollResume?: () => void
+) {
   const [activeSection, setActiveSection] = useState<ModuleId>(sectionIds[0]);
+  // When true, the IntersectionObserver won't update activeSection so a
+  // programmatic scroll (triggered by a nav click) doesn't fight the override.
+  const isPausedRef = useRef(false);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Apply the override immediately when the caller sets it.
+  useEffect(() => {
+    if (overrideSection == null) return;
+
+    setActiveSection(overrideSection);
+
+    // Pause scroll-detection for 1 s to let the smooth-scroll settle.
+    isPausedRef.current = true;
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      isPausedRef.current = false;
+      onScrollResume?.();
+    }, 1000);
+  }, [overrideSection, onScrollResume]);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -15,7 +38,7 @@ export function useActiveSection(sectionIds: ModuleId[]) {
 
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !isPausedRef.current) {
             setActiveSection(id);
           }
         },
@@ -27,7 +50,9 @@ export function useActiveSection(sectionIds: ModuleId[]) {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, [sectionIds]);
+    // sectionIds is stable (defined outside the component), so this only runs once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return activeSection;
 }

@@ -28,7 +28,9 @@ const sectionIds: ModuleId[] = [
 export function OSShell() {
   const [booted, setBooted] = useState(false);
   const [showBoot, setShowBoot] = useState(true);
-  const activeSection = useActiveSection(sectionIds);
+  const [clickedSection, setClickedSection] = useState<ModuleId | null>(null);
+  const handleScrollResume = useCallback(() => setClickedSection(null), []);
+  const activeSection = useActiveSection(sectionIds, clickedSection, handleScrollResume);
 
   useEffect(() => {
     const hasBooted = sessionStorage.getItem("neural-os-booted");
@@ -45,6 +47,7 @@ export function OSShell() {
   }, []);
 
   const handleNavigate = useCallback((id: ModuleId) => {
+    setClickedSection(id);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
