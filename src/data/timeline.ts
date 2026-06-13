@@ -66,7 +66,7 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "proj-4",
-    date: "2026-01",
+    date: "2026-04",
     type: "project",
     title: "CortexOS — AI Agent Layer",
     description:
