@@ -15,9 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://juan-bovio.xyz"
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: "Neural OS — Portfolio",
   description:
     "An AI Operating System portfolio showcasing software engineering, artificial intelligence projects, and product-building capabilities.",
