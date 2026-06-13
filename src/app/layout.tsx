@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://juan-bovio.xyz"
   ),
-  title: "Neural OS — Software & AI Engineer Portfolio",
+  title: "Neural OS — Portfolio",
   description:
     "An AI Operating System portfolio showcasing software engineering, artificial intelligence projects, and product-building capabilities.",
   keywords: [
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Juan Pablo Bovio Vallejo" }],
   openGraph: {
-    title: "Neural OS — Software & AI Engineer Portfolio",
+    title: "Neural OS — Portfolio",
     description:
       "Building intelligent systems and production-grade software at the intersection of engineering and AI.",
     type: "website",
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Neural OS — Software & AI Engineer Portfolio",
+    title: "Neural OS — Portfolio",
     description:
       "Building intelligent systems and production-grade software at the intersection of engineering and AI.",
     images: ["/og-image.png"],
@@ -58,7 +60,11 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-void text-foreground">{children}</body>
+      <body className="min-h-full bg-void text-foreground">
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
