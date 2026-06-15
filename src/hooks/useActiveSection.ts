@@ -6,7 +6,8 @@ import type { ModuleId } from "@/types";
 export function useActiveSection(
   sectionIds: ModuleId[],
   overrideSection?: ModuleId | null,
-  onScrollResume?: () => void
+  onScrollResume?: () => void,
+  ready: boolean = true
 ) {
   const [activeSection, setActiveSection] = useState<ModuleId>(sectionIds[0]);
   // When true, the IntersectionObserver won't update activeSection so a
@@ -30,6 +31,8 @@ export function useActiveSection(
   }, [overrideSection, onScrollResume]);
 
   useEffect(() => {
+    if (!ready) return;
+    
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -50,9 +53,7 @@ export function useActiveSection(
     });
 
     return () => observers.forEach((o) => o.disconnect());
-    // sectionIds is stable (defined outside the component), so this only runs once.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ready]);
 
   return activeSection;
 }

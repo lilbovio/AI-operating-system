@@ -30,7 +30,7 @@ export function OSShell() {
   const [showBoot, setShowBoot] = useState(true);
   const [clickedSection, setClickedSection] = useState<ModuleId | null>(null);
   const handleScrollResume = useCallback(() => setClickedSection(null), []);
-  const activeSection = useActiveSection(sectionIds, clickedSection, handleScrollResume);
+  const activeSection = useActiveSection(sectionIds, clickedSection, handleScrollResume, booted);
 
   useEffect(() => {
     const hasBooted = sessionStorage.getItem("neural-os-booted");

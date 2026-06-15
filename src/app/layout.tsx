@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  // for localhost testing set the URL to http://localhost:3000 and for production set to https://yourdomain.com
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: "Neural OS — Portfolio",
   description:
     "An AI Operating System portfolio showcasing software engineering, artificial intelligence projects, and product-building capabilities.",
