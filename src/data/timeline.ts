@@ -48,21 +48,21 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "hack-2",
-    date: "2026-03",
+    date: "2026-05r",
     type: "hackathon",
-    title: "University Hackathon — 2nd Place",
+    title: "HPE Innovation Challenge — Finalist",
     description:
-      "Won university hackathon by solving 2 real-world problems with software solutions.",
+      "Finalist in the 2026 HPE Innovation Challenge, presenting a solution for a real enterprise problem of onboarding and training for the marketing team, more than building a product, is more of how you sold the idea to the judges and how you presented it.",
     status: "completed",
   },
   {
-    id: "career-1",
-    date: "2026-09",
-    type: "career",
-    title: "Software Engineering Internship",
+    id: "hack-3",
+    date: "2026-05r",
+    type: "hackathon",
+    title: "IBM Hackathon — 1st Place",
     description:
-      "Contributing to production systems at a technology company — full-stack development and code review.",
-    status: "upcoming",
+      "Won the 2026 IBM SummerCamp BobAthon by working with a team to refactor, optimize, redesign, and deploy a full-stack application in 16 hours with the help of Bob, our mentor was a Solution Architect at IBM.",
+    status: "completed",
   },
   {
     id: "proj-4",
