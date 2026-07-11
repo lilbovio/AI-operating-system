@@ -34,7 +34,7 @@ export const projects: Project[] = [
       "Built adaptive learning path engine",
       "Production deployment with monitoring",
     ],
-    github: "https://github.com/yourusername/onboardiq",
+    github: "https://github.com/lilbovio/OnboardIQ",
     demo: "https://onboardiq-demo.vercel.app",
     accent: "#0066FF",
   },
@@ -86,11 +86,11 @@ export const projects: Project[] = [
     solution:
       "Apprender is an AI-powered learning app that identifies a child's VAK learning style through an interactive quiz and delivers personalized educational content (videos, audio lessons, and hands-on activities) to maximize engagement and retention.",
     architecture: [
-      "Real-time screen analysis pipeline",
-      "LLM-powered context understanding",
-      "Adaptive content delivery engine",
-      "Browser extension + web app hybrid",
-      "Edge-optimized inference layer",
+      "Interactive VAK learning style assessment quiz",
+      "AI-powered content recommendation engine",
+      "Personalized learning path generation",
+      "Multi-modal content delivery (video, audio, activities)",
+      "Progress tracking and analytics dashboard",
     ],
     technologies: [
       "Python",

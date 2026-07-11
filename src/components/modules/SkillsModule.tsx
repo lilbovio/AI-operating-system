@@ -5,7 +5,6 @@ import { skillEvidence } from "@/data/skills";
 import { projects } from "@/data/projects";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ModulePanel } from "@/components/ui/ModulePanel";
-import { fadeUp } from "@/lib/animations";
 
 export function SkillsModule() {
   return (

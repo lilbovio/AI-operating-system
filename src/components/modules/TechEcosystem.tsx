@@ -22,6 +22,15 @@ export function TechEcosystem() {
   const [activeCategory, setActiveCategory] = useState<TechCategory | "all">("all");
   const nodesRef = useRef<NodePosition[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const hoveredNodeRef = useRef<string | null>(null);
+  const activeCategoryRef = useRef<TechCategory | "all">("all");
+  const techNodesMapRef = useRef<Map<string, (typeof techNodes)[number]>>(new Map());
+  const isVisibleRef = useRef(true);
+
+  const syncRefs = useCallback((node: string | null, cat: TechCategory | "all") => {
+    hoveredNodeRef.current = node;
+    activeCategoryRef.current = cat;
+  }, []);
 
   const initNodes = useCallback((width: number, height: number) => {
     const cx = width / 2;
@@ -52,6 +61,8 @@ export function TechEcosystem() {
 
     let animationId: number;
 
+    techNodesMapRef.current = new Map(techNodes.map((n) => [n.id, n]));
+
     const resize = () => {
       const rect = container.getBoundingClientRect();
       canvas.width = rect.width * window.devicePixelRatio;
@@ -63,13 +74,20 @@ export function TechEcosystem() {
     };
 
     const draw = () => {
+      if (!isVisibleRef.current) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+
       const rect = container.getBoundingClientRect();
       ctx.clearRect(0, 0, rect.width, rect.height);
 
       const nodes = nodesRef.current;
       const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+      const hoveredNode = hoveredNodeRef.current;
+      const activeCategory = activeCategoryRef.current;
+      const techNodesMap = techNodesMapRef.current;
 
-      // Draw connections
       techNodes.forEach((techNode) => {
         const from = nodeMap.get(techNode.id);
         if (!from) return;
@@ -81,7 +99,7 @@ export function TechEcosystem() {
           const to = nodeMap.get(connId);
           if (!to) return;
 
-          const toTech = techNodes.find((n) => n.id === connId);
+          const toTech = techNodesMap.get(connId);
           const toVisible =
             activeCategory === "all" || toTech?.category === activeCategory;
 
@@ -101,9 +119,8 @@ export function TechEcosystem() {
         });
       });
 
-      // Draw nodes
       nodes.forEach((node) => {
-        const techNode = techNodes.find((n) => n.id === node.id);
+        const techNode = techNodesMap.get(node.id);
         if (!techNode) return;
 
         const isVisible =
@@ -114,7 +131,6 @@ export function TechEcosystem() {
         const baseOpacity = isVisible ? 1 : 0.15;
         const radius = isHovered ? 6 : 4;
 
-        // Glow
         if (isHovered) {
           ctx.beginPath();
           ctx.arc(node.x, node.y, 16, 0, Math.PI * 2);
@@ -168,22 +184,39 @@ export function TechEcosystem() {
           break;
         }
       }
-      setHoveredNode(found);
-      canvas.style.cursor = found ? "pointer" : "default";
+
+      if (hoveredNodeRef.current !== found) {
+        hoveredNodeRef.current = found;
+        setHoveredNode(found);
+        canvas.style.cursor = found ? "pointer" : "default";
+      }
     };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
 
     resize();
     draw();
+    observer.observe(container);
 
     window.addEventListener("resize", resize);
     canvas.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       cancelAnimationFrame(animationId);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [hoveredNode, activeCategory, initNodes]);
+  }, [initNodes, syncRefs]);
+
+  useEffect(() => {
+    syncRefs(hoveredNode, activeCategory);
+  }, [hoveredNode, activeCategory, syncRefs]);
 
   return (
     <section id="stack" className="relative py-24 md:py-32 px-6">

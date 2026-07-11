@@ -1,4 +1,4 @@
-import type { SkillEvidence } from "@/types";
+import type { SkillEvidence, OSModule } from "@/types";
 
 export const skillEvidence: SkillEvidence[] = [
   {
@@ -16,7 +16,6 @@ export const skillEvidence: SkillEvidence[] = [
     domain: "AI & Machine Learning",
     evidence: [
       "Designed and implemented AI features in multiple projects, including LLM-powered recommendations, computer vision pipelines, and NLP processing",
-      "LLM integration, computer vision pipelines, and NLP processing",
       "CortexOS research — multi-agent orchestration architecture",
     ],
     relatedProjects: ["hackathon-ai", "future-ai"],
@@ -53,7 +52,7 @@ export const skillEvidence: SkillEvidence[] = [
   },
 ];
 
-export const osModules = [
+export const osModules: OSModule[] = [
   {
     id: "identity" as const,
     label: "Identity Core",

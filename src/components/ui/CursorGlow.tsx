@@ -1,17 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useMousePosition } from "@/hooks/useMousePosition";
+import { useEffect, useRef } from "react";
 
 export function CursorGlow() {
-  const { x, y } = useMousePosition();
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = glowRef.current;
+    if (!el) return;
+
+    let rafId: number;
+
+    const handler = (e: MouseEvent) => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        el.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(0,102,255,0.06), transparent 40%)`;
+      });
+    };
+
+    window.addEventListener("mousemove", handler, { passive: true });
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("mousemove", handler);
+    };
+  }, []);
 
   return (
-    <motion.div
+    <div
+      ref={glowRef}
       className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
-      style={{
-        background: `radial-gradient(600px circle at ${x}px ${y}px, rgba(0,102,255,0.06), transparent 40%)`,
-      }}
       aria-hidden="true"
     />
   );

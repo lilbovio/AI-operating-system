@@ -22,11 +22,12 @@ export function DataStream() {
 
     let animationId: number;
     let particles: Particle[] = [];
+    let isVisible = true;
 
     const resize = () => {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio;
       canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
     };
 
     const init = () => {
@@ -40,6 +41,11 @@ export function DataStream() {
     };
 
     const draw = () => {
+      if (!isVisible) {
+        animationId = requestAnimationFrame(draw);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
 
       particles.forEach((p) => {
@@ -58,13 +64,22 @@ export function DataStream() {
       animationId = requestAnimationFrame(draw);
     };
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+
     resize();
     init();
     draw();
+    observer.observe(canvas);
 
     window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(animationId);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, []);

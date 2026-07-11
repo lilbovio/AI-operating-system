@@ -11,10 +11,10 @@ import {
   Terminal,
 } from "lucide-react";
 import { osModules } from "@/data/skills";
-import type { ModuleId } from "@/types";
+import type { ModuleId, ModuleIcon } from "@/types";
 import { cn } from "@/lib/utils";
 
-const iconMap = {
+const iconMap: Record<ModuleIcon, typeof Cpu> = {
   Cpu,
   User,
   AppWindow,
@@ -41,7 +41,7 @@ export function OSNavigation({ activeSection, onNavigate }: OSNavigationProps) {
         aria-label="Module navigation"
       >
         {osModules.map((mod) => {
-          const Icon = iconMap[mod.icon as keyof typeof iconMap];
+          const Icon = iconMap[mod.icon];
           const isActive = activeSection === mod.id;
           return (
             <button
@@ -54,7 +54,7 @@ export function OSNavigation({ activeSection, onNavigate }: OSNavigationProps) {
                   : "text-white/40 hover:text-white/70 hover:bg-white/5"
               )}
               aria-label={mod.label}
-              aria-current={isActive ? "true" : undefined}
+              aria-current={isActive ? "page" : undefined}
             >
               <Icon size={18} strokeWidth={1.5} />
               <span className="text-xs font-medium whitespace-nowrap">
@@ -80,7 +80,7 @@ export function OSNavigation({ activeSection, onNavigate }: OSNavigationProps) {
         aria-label="Module navigation"
       >
         {osModules.map((mod) => {
-          const Icon = iconMap[mod.icon as keyof typeof iconMap];
+          const Icon = iconMap[mod.icon];
           const isActive = activeSection === mod.id;
           return (
             <button
@@ -91,7 +91,7 @@ export function OSNavigation({ activeSection, onNavigate }: OSNavigationProps) {
                 isActive ? "text-electric" : "text-white/40"
               )}
               aria-label={mod.label}
-              aria-current={isActive ? "true" : undefined}
+              aria-current={isActive ? "page" : undefined}
             >
               <Icon size={18} strokeWidth={1.5} />
               <span className="text-[9px] font-medium">{mod.shortLabel}</span>

@@ -48,7 +48,7 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "hack-2",
-    date: "2026-05r",
+    date: "2026-05",
     type: "hackathon",
     title: "HPE Innovation Challenge — Finalist",
     description:
@@ -57,7 +57,7 @@ export const missionLog: MissionEntry[] = [
   },
   {
     id: "hack-3",
-    date: "2026-05r",
+    date: "2026-06",
     type: "hackathon",
     title: "IBM Hackathon — 1st Place",
     description:

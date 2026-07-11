@@ -9,9 +9,35 @@ import { Badge } from "@/components/ui/Badge";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { DataStream } from "./DataStream";
 
+function dynamicWithRetry(
+  importFn: () => Promise<{ default: React.ComponentType }>,
+  retries = 3,
+  interval = 1000
+) {
+  return new Promise<{ default: React.ComponentType }>((resolve, reject) => {
+    importFn()
+      .then(resolve)
+      .catch((error) => {
+        if (retries <= 0) {
+          reject(error);
+          return;
+        }
+        setTimeout(() => {
+          dynamicWithRetry(importFn, retries - 1, interval).then(resolve, reject);
+        }, interval);
+      });
+  });
+}
+
 const NeuralCore = dynamic(
-  () => import("./NeuralCore").then((m) => m.NeuralCore),
-  { ssr: false, loading: () => <div className="absolute inset-0 -z-10" /> }
+  () =>
+    dynamicWithRetry(() =>
+      import("./NeuralCore").then((m) => ({ default: m.NeuralCore }))
+    ),
+  {
+    ssr: false,
+    loading: () => <div className="absolute inset-0 -z-10" />,
+  }
 );
 
 interface HeroSectionProps {

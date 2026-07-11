@@ -7,11 +7,13 @@ export type ModuleId =
   | "missions"
   | "contact";
 
+export type ModuleIcon = "Cpu" | "User" | "AppWindow" | "Network" | "Zap" | "ScrollText" | "Terminal";
+
 export interface OSModule {
   id: ModuleId;
   label: string;
   shortLabel: string;
-  icon: string;
+  icon: ModuleIcon;
   description: string;
 }
 
@@ -51,7 +53,7 @@ export type TechCategory =
 
 export interface MissionEntry {
   id: string;
-  date: string;
+  date: `${number}-${number}`;
   type: "education" | "certification" | "hackathon" | "project" | "career";
   title: string;
   description: string;

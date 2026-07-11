@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Code, Layers, Target, Zap } from "lucide-react";
+import { X, ExternalLink, Code, Target, Zap } from "lucide-react";
 import type { Project } from "@/types";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";

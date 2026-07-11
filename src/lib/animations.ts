@@ -1,6 +1,5 @@
 export const ease = {
   premium: [0.22, 1, 0.36, 1] as const,
-  smooth: [0.4, 0, 0.2, 1] as const,
 };
 
 export const fadeUp = {
@@ -24,15 +23,6 @@ export const fadeIn = {
   },
 };
 
-export const scaleIn = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: ease.premium },
-  },
-};
-
 export const staggerContainer = {
   hidden: {},
   visible: {
@@ -40,11 +30,4 @@ export const staggerContainer = {
   },
 };
 
-export const slideFromLeft = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: ease.premium },
-  },
-};
+
